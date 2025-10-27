@@ -1,0 +1,247 @@
+<?xml version="1.0" ?>
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#2b2b2b"/>
+    </marker>
+  </defs>
+  <g>
+    <rect x="140" y="100" width="280" height="150" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="156" y="128" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">TENANT</text>
+    <line x1="140" y1="136" x2="420" y2="136" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="156" y="158" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="156" y="180" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">name</text>
+    <text x="156" y="202" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">plan</text>
+    <text x="156" y="224" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">created_at</text>
+    <rect x="520" y="100" width="300" height="190" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="536" y="128" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">SCHOOL</text>
+    <line x1="520" y1="136" x2="820" y2="136" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="536" y="158" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="536" y="180" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">tenant_id (FK→TENANT)</text>
+    <text x="536" y="202" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">name</text>
+    <text x="536" y="224" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">locale</text>
+    <text x="536" y="246" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">address</text>
+    <text x="536" y="268" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">phone</text>
+    <text x="536" y="290" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">logo_url</text>
+    <rect x="140" y="360" width="300" height="210" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="156" y="388" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">USER</text>
+    <line x1="140" y1="396" x2="440" y2="396" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="156" y="418" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="156" y="440" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">email</text>
+    <text x="156" y="462" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">password_hash</text>
+    <text x="156" y="484" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">first_name</text>
+    <text x="156" y="506" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">last_name</text>
+    <text x="156" y="528" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">locale</text>
+    <text x="156" y="550" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">google_sub</text>
+    <text x="156" y="572" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">microsoft_oid</text>
+    <text x="156" y="594" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">is_active</text>
+    <text x="156" y="616" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">created_at</text>
+    <rect x="520" y="360" width="300" height="160" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="536" y="388" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">ROLE_ASSIGNMENT</text>
+    <line x1="520" y1="396" x2="820" y2="396" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="536" y="418" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="536" y="440" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">user_id (FK→USER)</text>
+    <text x="536" y="462" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">role</text>
+    <text x="536" y="484" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">tenant_id?</text>
+    <text x="536" y="506" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">school_id?</text>
+    <text x="536" y="528" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">section_id?</text>
+    <rect x="140" y="620" width="300" height="150" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="156" y="648" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">STUDENT</text>
+    <line x1="140" y1="656" x2="440" y2="656" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="156" y="678" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="156" y="700" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">user_id (FK→USER)</text>
+    <text x="156" y="722" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">enrollment_status</text>
+    <text x="156" y="744" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">admission_date</text>
+    <text x="156" y="766" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">graduation_date</text>
+    <rect x="140" y="920" width="300" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="156" y="948" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">GUARDIAN</text>
+    <line x1="140" y1="956" x2="440" y2="956" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="156" y="978" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="156" y="1000" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">user_id (FK→USER)</text>
+    <rect x="520" y="920" width="320" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="536" y="948" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">STUDENT_GUARDIAN_LINK</text>
+    <line x1="520" y1="956" x2="840" y2="956" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="536" y="978" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">student_id (FK→STUDENT)</text>
+    <text x="536" y="1000" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">guardian_id (FK→GUARDIAN)</text>
+    <text x="536" y="1022" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">relationship</text>
+    <rect x="140" y="1220" width="300" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="156" y="1248" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">TEACHER</text>
+    <line x1="140" y1="1256" x2="440" y2="1256" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="156" y="1278" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="156" y="1300" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">user_id (FK→USER)</text>
+    <text x="156" y="1322" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">department</text>
+    <text x="156" y="1344" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">hire_date</text>
+    <rect x="900" y="100" width="300" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="916" y="128" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">SUBJECT</text>
+    <line x1="900" y1="136" x2="1200" y2="136" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="916" y="158" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="916" y="180" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">school_id (FK→SCHOOL)</text>
+    <text x="916" y="202" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">code</text>
+    <text x="916" y="224" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">name</text>
+    <rect x="1280" y="100" width="320" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1296" y="128" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">ACADEMIC_YEAR</text>
+    <line x1="1280" y1="136" x2="1600" y2="136" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1296" y="158" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1296" y="180" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">school_id (FK→SCHOOL)</text>
+    <text x="1296" y="202" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">name</text>
+    <text x="1296" y="224" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">start_date</text>
+    <text x="1296" y="246" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">end_date</text>
+    <rect x="1660" y="100" width="280" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1676" y="128" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">TERM</text>
+    <line x1="1660" y1="136" x2="1940" y2="136" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1676" y="158" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1676" y="180" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">academic_year_id (FK→AY)</text>
+    <text x="1676" y="202" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">name</text>
+    <text x="1676" y="224" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">weight</text>
+    <rect x="900" y="360" width="300" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="916" y="388" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">COURSE</text>
+    <line x1="900" y1="396" x2="1200" y2="396" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="916" y="418" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="916" y="440" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">subject_id (FK→SUBJECT)</text>
+    <text x="916" y="462" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">academic_year_id (FK→AY)</text>
+    <text x="916" y="484" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">title</text>
+    <rect x="1280" y="360" width="320" height="130" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1296" y="388" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">SECTION</text>
+    <line x1="1280" y1="396" x2="1600" y2="396" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1296" y="418" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1296" y="440" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">course_id (FK→COURSE)</text>
+    <text x="1296" y="462" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">teacher_id (FK→TEACHER)</text>
+    <text x="1296" y="484" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">room</text>
+    <text x="1296" y="506" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">schedule_json</text>
+    <rect x="1660" y="360" width="300" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1676" y="388" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">ENROLLMENT</text>
+    <line x1="1660" y1="396" x2="1960" y2="396" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1676" y="418" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1676" y="440" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">section_id (FK→SECTION)</text>
+    <text x="1676" y="462" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">student_id (FK→STUDENT)</text>
+    <text x="1676" y="484" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">status</text>
+    <text x="1676" y="506" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">joined_at</text>
+    <rect x="900" y="620" width="320" height="140" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="916" y="648" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">GRADING_POLICY</text>
+    <line x1="900" y1="656" x2="1220" y2="656" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="916" y="678" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="916" y="700" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">scope_type (school/section)</text>
+    <text x="916" y="722" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">scope_id</text>
+    <text x="916" y="744" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">policy_json</text>
+    <text x="916" y="766" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">effective_date</text>
+    <rect x="1280" y="620" width="320" height="160" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1296" y="648" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">ASSIGNMENT</text>
+    <line x1="1280" y1="656" x2="1600" y2="656" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1296" y="678" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1296" y="700" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">section_id (FK→SECTION)</text>
+    <text x="1296" y="722" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">category</text>
+    <text x="1296" y="744" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">subdivision_label?</text>
+    <text x="1296" y="766" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">title</text>
+    <text x="1296" y="788" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">points</text>
+    <text x="1296" y="810" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">due_at</text>
+    <text x="1296" y="832" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">integration_source</text>
+    <text x="1296" y="854" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">source_id?</text>
+    <rect x="1660" y="620" width="300" height="130" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1676" y="648" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">SUBMISSION</text>
+    <line x1="1660" y1="656" x2="1960" y2="656" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1676" y="678" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1676" y="700" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">assignment_id (FK→ASSIGNMENT)</text>
+    <text x="1676" y="722" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">student_id (FK→STUDENT)</text>
+    <text x="1676" y="744" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">status</text>
+    <text x="1676" y="766" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">submitted_at</text>
+    <text x="1676" y="788" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">file_url</text>
+    <text x="1676" y="810" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">feedback</text>
+    <rect x="2040" y="620" width="280" height="110" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="2056" y="648" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">GRADE</text>
+    <line x1="2040" y1="656" x2="2320" y2="656" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="2056" y="678" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="2056" y="700" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">submission_id (FK→SUBMISSION)</text>
+    <text x="2056" y="722" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">score</text>
+    <text x="2056" y="744" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">percentage</text>
+    <text x="2056" y="766" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">comment</text>
+    <text x="2056" y="788" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">graded_by (FK→TEACHER)</text>
+    <text x="2056" y="810" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">graded_at</text>
+    <rect x="900" y="920" width="320" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="916" y="948" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">MESSAGE_THREAD</text>
+    <line x1="900" y1="956" x2="1220" y2="956" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="916" y="978" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="916" y="1000" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">subject</text>
+    <text x="916" y="1022" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">created_by (FK→USER)</text>
+    <text x="916" y="1044" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">created_at</text>
+    <rect x="1280" y="920" width="320" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1296" y="948" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">MESSAGE</text>
+    <line x1="1280" y1="956" x2="1600" y2="956" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1296" y="978" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1296" y="1000" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">thread_id (FK→THREAD)</text>
+    <text x="1296" y="1022" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">sender_id (FK→USER)</text>
+    <text x="1296" y="1044" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">body</text>
+    <text x="1296" y="1066" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">created_at</text>
+    <rect x="1660" y="920" width="300" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1676" y="948" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">REPORT_ARTIFACT</text>
+    <line x1="1660" y1="956" x2="1960" y2="956" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1676" y="978" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1676" y="1000" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">type (report_card/transcript)</text>
+    <text x="1676" y="1022" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">student_id (FK→STUDENT)</text>
+    <text x="1676" y="1044" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">term_id?</text>
+    <text x="1676" y="1066" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">file_url</text>
+    <text x="1676" y="1088" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">created_at</text>
+    <rect x="900" y="1220" width="300" height="120" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="916" y="1248" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">INTEGRATION_LINK</text>
+    <line x1="900" y1="1256" x2="1200" y2="1256" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="916" y="1278" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="916" y="1300" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">section_id (FK→SECTION)</text>
+    <text x="916" y="1322" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">provider</text>
+    <text x="916" y="1344" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">external_course_id</text>
+    <text x="916" y="1366" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">last_sync_at</text>
+    <text x="916" y="1388" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">status</text>
+    <rect x="1280" y="1220" width="300" height="110" rx="10" fill="#ffffff" stroke="#2b2b2b" stroke-width="2"/>
+    <text x="1296" y="1248" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-weight="700" font-size="18">LOCALE_PREFERENCE</text>
+    <line x1="1280" y1="1256" x2="1580" y2="1256" stroke="#2b2b2b" stroke-width="1"/>
+    <text x="1296" y="1278" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">id (PK)</text>
+    <text x="1296" y="1300" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">user_id (FK→USER)</text>
+    <text x="1296" y="1322" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">locale_code</text>
+    <text x="1296" y="1344" fill="#111111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="14">timezone</text>
+  </g>
+  <line x1="410.0" y1="175" x2="530.0" y2="195" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="470.0" y="179.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="430.0" y1="465" x2="530.0" y2="440" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="480.0" y="446.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="290" y1="560.0" x2="150.0" y2="695" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="220.0" y="621.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–1</text>
+  <line x1="290" y1="760.0" x2="530.0" y2="980" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="410.0" y="864.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">M–M</text>
+  <line x1="290" y1="560.0" x2="150.0" y2="1280" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="220.0" y="914.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–1</text>
+  <line x1="150.0" y1="980" x2="530.0" y2="980" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="340.0" y="974.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">M–M</text>
+  <line x1="810.0" y1="195" x2="910.0" y2="160" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="860.0" y="171.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="810.0" y1="195" x2="1290.0" y2="160" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1050.0" y="171.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="1590.0" y1="160" x2="1670.0" y2="160" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1630.0" y="154.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="1190.0" y1="160" x2="910.0" y2="420" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1050.0" y="284.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="1190.0" y1="420" x2="1290.0" y2="425" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1240.0" y="416.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="150.0" y1="1280" x2="1290.0" y2="425" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="720.0" y="846.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="1590.0" y1="425" x2="1670.0" y2="420" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1630.0" y="416.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="430.0" y1="695" x2="1670.0" y2="420" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1050.0" y="551.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="910.0" y1="690" x2="1290.0" y2="425" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1100.0" y="551.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">scoped</text>
+  <line x1="1590.0" y1="425" x2="1290.0" y2="700" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1440.0" y="556.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="1590.0" y1="700" x2="1670.0" y2="685" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1630.0" y="686.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="1950.0" y1="685" x2="2050.0" y2="675" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="2000.0" y="674.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–1</text>
+  <line x1="1210.0" y1="980" x2="1290.0" y2="980" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1250.0" y="974.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="290" y1="560.0" x2="910.0" y2="980" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="600.0" y="764.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="430.0" y1="695" x2="1670.0" y2="980" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1050.0" y="831.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="910.0" y1="1280" x2="1290.0" y2="425" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="1100.0" y="846.5" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–M</text>
+  <line x1="430.0" y1="465" x2="1290.0" y2="1275" stroke="#2b2b2b" stroke-width="1.6" marker-end="url(#arrow)"/>
+  <text x="860.0" y="864.0" fill="#444" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="12" text-anchor="middle">1–1</text>
+  <text x="120" y="60" fill="#111" font-family="Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif" font-size="28" font-weight="700">SchoolOS — School Management System ERD (Professional)</text>
+</svg>
