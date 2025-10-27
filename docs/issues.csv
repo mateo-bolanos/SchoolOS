@@ -1,0 +1,32 @@
+Title,Body,Labels,Assignee
+[Backend] Design database schema,Design normalized PostgreSQL schema for users roles subjects grades and attendance.,backend,django-agent
+[Backend] Implement Django models and serializers,Create Django models and DRF serializers for the schema defined.,backend,django-agent
+[Backend] Create grade calculation module,Implement flexible percentage-based grade calculation per assignment category.,backend,backend-agent
+[Backend] Setup authentication (JWT + Roles),Implement JWT authentication and role-based permissions for Admin Teacher Student Parent.,backend,backend-agent
+[Backend] Generate grade reports (PDF),Build backend service to generate student reports and transcripts in PDF format.,backend,reports-agent
+[Backend] Unit and integration tests,Implement pytest test suite for backend modules with 80% coverage.,backend,qa-agent
+[Frontend] Setup React + MUI project,Initialize frontend project with React 18 MUI and routing setup.,frontend,frontend-agent
+[Frontend] Implement login and dashboard views,Create role-based dashboards for Admin Teacher Student Parent with dummy data.,frontend,frontend-agent
+[Frontend] CRUD Students and Teachers,Implement frontend forms for CRUD operations on Students and Teachers.,frontend,frontend-agent
+[Frontend] Grades and Attendance UI,Create interfaces to input and view grades and attendance with data visualization.,frontend,frontend-agent
+[Frontend] Messaging UI,Develop Gmail-style in-app messaging interface between users.,frontend,frontend-agent
+[Frontend] Charts and Analytics,Integrate charts and KPIs for academic analytics using Recharts or Chart.js.,frontend,frontend-agent
+[Integration] Google Classroom API,Integrate Google Classroom API to sync assignments and grades.,integration,integrations-agent
+[Integration] Google OAuth2 Login,Implement Google sign-in for all roles with proper token handling.,integration,integrations-agent
+[Integration] Gmail API Messaging,Enable in-app email integration via Gmail API for teachers and students.,integration,integrations-agent
+[DevOps] Dockerize backend and frontend,Create Dockerfiles and docker-compose setup for local and production deployment.,devops,devops-agent
+[DevOps] AWS Deployment EC2 RDS S3,Deploy application stack on AWS using EC2 RDS PostgreSQL and S3 for media.,devops,devops-agent
+[DevOps] Setup CI/CD pipeline,Configure GitHub Actions for testing building and deploying both services.,devops,devops-agent
+[DevOps] Environment management,Add .env templates manage AWS credentials and define deployment secrets.,devops,devops-agent
+[QA] API Testing Suite,Validate REST endpoints with Postman and Pytest integration.,qa,qa-agent
+[QA] Frontend Testing,Add React Testing Library or Cypress for frontend tests.,qa,qa-agent
+[QA] Performance and Load Testing,Perform initial load testing for 1000 users and optimize API latency.,qa,qa-agent
+[Documentation] Project Setup Guide,Write INSTALL.md with environment setup and launch instructions.,documentation,docs-agent
+[Documentation] API Reference,Generate OpenAPI Swagger documentation for all backend endpoints.,documentation,docs-agent
+[Documentation] User Manual,Create a simple user manual for Admin Teacher Student and Parent roles.,documentation,docs-agent
+[Documentation] Changelog and Versioning,Maintain CHANGELOG.md and version tags following SemVer.,documentation,docs-agent
+[Documentation] Architecture Overview,Document system architecture module dependencies and agent responsibilities.,documentation,docs-agent
+[Planning] Define MVP boundaries,Document which features belong in Phase 1 vs later expansions.,planning,architect-agent
+[Planning] Create STATUS.md workflow,Define reporting workflow and format for agent progress updates.,planning,architect-agent
+[Planning] Setup Issue Templates,Add GitHub issue templates for new feature requests bugs and documentation.,planning,architect-agent
+[Planning] Setup Project Board,Create GitHub project board with columns Todo In Progress Review Done.,planning,architect-agent
