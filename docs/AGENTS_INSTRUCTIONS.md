@@ -15,6 +15,9 @@ All output must be **deterministic, documented, and human-readable** — so that
 Agents collaborate through GitHub issues, branches, and pull requests.  
 Every agent **reads AGENTS_INSTRUCTIONS.md before any task**.
 
+> \U0001f9ed If GitHub issues are not accessible, each agent must read tasks directly from the local `issues.csv` file using:  
+> `cat issues.csv | grep "<agent keyword>"` \u2014 for example `grep "Backend"` or `grep "Frontend"` \u2014 to view their pending tasks.
+
 ---
 
 ## 🧩 Core Rules for All Agents

@@ -1,0 +1,36 @@
+Title,Body,Labels,Assignee
+Architecture 1 Define Project Architecture,Create a high-level architecture diagram and folder structure for the SchoolOS system.,planning,architect-agent
+Backend 1 Setup Django and DRF Project,Initialize a new Django REST Framework project with PostgreSQL connection.,backend,backend-agent
+Backend 2 Design Database Schema,Design normalized PostgreSQL schema for users roles subjects grades attendance and assignments.,backend,backend-agent
+Backend 3 Implement Django Models and Serializers,Create Django models and DRF serializers according to the schema.,backend,backend-agent
+Backend 4 Implement Authentication JWT and Roles,Set up JWT authentication and role-based access for Admin Teacher Student Parent.,backend,backend-agent
+Backend 5 Implement Grade Calculation Module,Develop percentage-based weighted grade calculation module.,backend,backend-agent
+Backend 6 Implement CRUD Endpoints,Add CRUD endpoints for Students Teachers and Subjects.,backend,backend-agent
+Backend 7 Generate PDF Reports and Transcripts,Generate PDF grade reports and transcripts using Django templates.,backend,backend-agent
+Backend 8 Unit and Integration Tests,Add Pytest tests for backend models views and endpoints with 80 percent coverage.,backend,qa-agent
+Backend 9 Write Backend Setup Docs,Document backend environment setup and run instructions in docs BACKEND_SETUP.md.,documentation,docs-agent
+Frontend 1 Setup React and MUI Project,Initialize React project with Material UI routing and folder structure.,frontend,frontend-agent
+Frontend 2 Implement Login and Role Dashboards,Develop login page and dashboards for Admin Teacher Student Parent roles.,frontend,frontend-agent
+Frontend 3 CRUD Pages Students Teachers Subjects,Create React forms and tables for CRUD operations.,frontend,frontend-agent
+Frontend 4 Grades and Attendance UI,Implement grade input and attendance visualization.,frontend,frontend-agent
+Frontend 5 Charts and Analytics Dashboard,Add charts and KPIs for performance tracking using Recharts.,frontend,frontend-agent
+Frontend 6 Messaging UI In App Email,Develop Gmail style internal messaging UI with mock data.,frontend,frontend-agent
+Frontend 7 API Integration,Connect frontend components to backend REST endpoints via Axios.,frontend,frontend-agent
+Frontend 8 User Interface Testing,Add frontend tests using React Testing Library or Cypress.,qa,qa-agent
+Frontend 9 Write Frontend Setup Docs,Document frontend installation and usage in docs FRONTEND_SETUP.md.,documentation,docs-agent
+Frontend 10 Create User Manual,Write end user guide for Admin Teacher Student Parent roles.,documentation,docs-agent
+Integration 1 Google OAuth2 Login,Implement Google sign in with OAuth2 tokens and refresh logic.,integration,integrations-agent
+Integration 2 Google Classroom API,Sync assignments and grades between SchoolOS and Google Classroom API.,integration,integrations-agent
+Integration 3 Gmail API,Integrate Gmail API for in app messaging between users.,integration,integrations-agent
+DevOps 1 Dockerize Backend and Frontend,Create Dockerfiles and docker compose for both backend and frontend.,devops,devops-agent
+DevOps 2 Setup AWS Environment EC2 RDS S3,Deploy system on AWS with database and file storage configuration.,devops,devops-agent
+DevOps 3 Setup CICD Pipeline,Configure GitHub Actions workflow for testing building and deployment.,devops,devops-agent
+DevOps 4 Environment Secrets Management,Add env templates and secure credentials handling for all environments.,devops,devops-agent
+QA 1 Integration Testing,Write integration tests to validate Google API connections and backend routes.,qa,qa-agent
+Docs 1 Deployment Documentation,Write detailed deployment instructions in docs DEPLOYMENT.md.,documentation,docs-agent
+Architecture 2 Create Project Board,Configure GitHub Project Board with columns Todo In Progress Review Done.,planning,architect-agent
+Architecture 3 Setup Issue Templates,Add issue templates for features bugs and documentation.,planning,architect-agent
+Architecture 4 Define Reporting Workflow,Document STATUS.md structure and reporting cadence.,planning,architect-agent
+Docs 2 Maintain CHANGELOG.md,Track version updates and changes using Semantic Versioning.,documentation,docs-agent
+QA 2 Final QA and Polishing,Run full regression tests and prepare release candidate build.,qa,qa-agent
+DevOps 5 Release Version v1.0.0,Tag final release and deploy production build to AWS.,devops,devops-agent
