@@ -19,6 +19,10 @@ SETTINGS_MODULE = "config.settings"
 def _reload_settings(monkeypatch, env: Mapping[str, str] | None = None):
     """Reload the Django settings module with a clean environment."""
     tracked_keys = {
+        "SECRET_KEY",
+        "DEBUG",
+        "ALLOWED_HOSTS",
+        "CSRF_TRUSTED_ORIGINS",
         "DJANGO_SECRET_KEY",
         "DJANGO_DEBUG",
         "DJANGO_ALLOWED_HOSTS",
@@ -92,8 +96,8 @@ def test_allowed_hosts_and_csrf_parsing(monkeypatch):
     settings = _reload_settings(
         monkeypatch,
         {
-            "DJANGO_ALLOWED_HOSTS": "api.schoolos.com, dashboard.schoolos.com , ",
-            "DJANGO_CSRF_TRUSTED_ORIGINS": "https://schoolos.com, https://app.schoolos.com ",
+            "ALLOWED_HOSTS": "api.schoolos.com, dashboard.schoolos.com , ",
+            "CSRF_TRUSTED_ORIGINS": "https://schoolos.com, https://app.schoolos.com ",
         },
     )
 

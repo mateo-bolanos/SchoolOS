@@ -22,12 +22,11 @@ services:
     build:
       context: ./backend
     image: schoolos-backend:latest
-    command: ./entrypoint.sh
     env_file:
       - .env
     environment:
       DJANGO_SETTINGS_MODULE: config.settings
-      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-localhost,backend}
+      ALLOWED_HOSTS: ${ALLOWED_HOSTS:-localhost,backend}
       POSTGRES_HOST: db
     depends_on:
       db:
@@ -52,7 +51,7 @@ services:
     environment:
       VITE_API_URL: ${VITE_API_URL:-http://localhost:8000}
     ports:
-      - "3000:80"
+      - "3000:3000"
 
 volumes:
   db_data:
