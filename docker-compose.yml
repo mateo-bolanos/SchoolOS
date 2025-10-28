@@ -22,7 +22,7 @@ services:
     build:
       context: ./backend
     image: schoolos-backend:latest
-    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
+    command: ./entrypoint.sh
     env_file:
       - .env
     environment:
@@ -36,6 +36,12 @@ services:
       - "8000:8000"
     volumes:
       - ./backend:/app
+    healthcheck:
+      test: ['CMD-SHELL', 'curl -fsS http://localhost:8000/healthz || exit 1']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
 
   frontend:
     build:

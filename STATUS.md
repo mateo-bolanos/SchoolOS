@@ -16,9 +16,10 @@ Each agent appends updates here at the end of a work session.
 
 ## [devops-agent]
 - Current issue: #16
-- Progress: 100%
+- Progress: 80%
 - Notes:
   - 2025-10-23: Added Dockerfiles for backend/frontend, compose stack, and env template for containerized development.
+  - 2025-10-24: Hardened compose stack with entrypoint migrations, health checks, and dedicated env templates.
 
 ## [integrations-agent]
 - Current issue: #13
