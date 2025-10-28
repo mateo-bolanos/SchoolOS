@@ -1,0 +1,338 @@
+openapi: 3.1.0
+info:
+  title: SchoolOS Mock Contracts
+  version: 0.1.0
+  description: >-
+    Stable interface definitions for early frontend integration. These endpoints
+    are powered by mock fixtures when the `DJANGO_ENABLE_MOCK_DATA` feature flag
+    is enabled.
+paths:
+  /api/v1/me:
+    get:
+      summary: Retrieve the authenticated user's profile
+      tags: [Me]
+      responses:
+        '200':
+          description: Profile information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+  /api/v1/dashboard/stats:
+    get:
+      summary: Retrieve dashboard summary statistics
+      tags: [Dashboard]
+      responses:
+        '200':
+          description: Aggregated metrics for the dashboard widgets
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardStats'
+  /api/v1/courses:
+    get:
+      summary: List courses for the current user
+      tags: [Courses]
+      responses:
+        '200':
+          description: Array of courses and nested sections
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course'
+  /api/v1/sections/{sectionId}/roster:
+    get:
+      summary: Retrieve roster for a section
+      tags: [Sections]
+      parameters:
+        - $ref: '#/components/parameters/SectionId'
+      responses:
+        '200':
+          description: Students enrolled in the section
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SectionRoster'
+  /api/v1/sections/{sectionId}/gradebook:
+    get:
+      summary: Retrieve gradebook data for a section
+      tags: [Sections]
+      parameters:
+        - $ref: '#/components/parameters/SectionId'
+      responses:
+        '200':
+          description: Assignment scores per student
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SectionGradebook'
+  /api/v1/assignments:
+    get:
+      summary: List assignments
+      tags: [Assignments]
+      responses:
+        '200':
+          description: Collection of assignments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Assignment'
+    post:
+      summary: Create an assignment
+      tags: [Assignments]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentInput'
+      responses:
+        '201':
+          description: Assignment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+  /api/v1/assignments/{assignmentId}:
+    get:
+      summary: Retrieve an assignment
+      tags: [Assignments]
+      parameters:
+        - $ref: '#/components/parameters/AssignmentId'
+      responses:
+        '200':
+          description: Assignment details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+    put:
+      summary: Replace an assignment
+      tags: [Assignments]
+      parameters:
+        - $ref: '#/components/parameters/AssignmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentInput'
+      responses:
+        '200':
+          description: Updated assignment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+    patch:
+      summary: Partially update an assignment
+      tags: [Assignments]
+      parameters:
+        - $ref: '#/components/parameters/AssignmentId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AssignmentPatch'
+      responses:
+        '200':
+          description: Updated assignment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assignment'
+    delete:
+      summary: Delete an assignment
+      tags: [Assignments]
+      parameters:
+        - $ref: '#/components/parameters/AssignmentId'
+      responses:
+        '204':
+          description: Assignment deleted
+components:
+  parameters:
+    SectionId:
+      name: sectionId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Identifier of the section
+    AssignmentId:
+      name: assignmentId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: Identifier of the assignment
+  schemas:
+    MeResponse:
+      type: object
+      required: [id, first_name, last_name, email, role, permissions]
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          type: string
+          enum: [admin, teacher, student, guardian]
+        permissions:
+          type: array
+          items:
+            type: string
+    DashboardStats:
+      type: object
+      required: [sections, students, assignments_due, assignments_to_grade, attendance_rate]
+      properties:
+        sections:
+          type: integer
+        students:
+          type: integer
+        assignments_due:
+          type: integer
+        assignments_to_grade:
+          type: integer
+        attendance_rate:
+          type: number
+          format: float
+    Course:
+      type: object
+      required: [id, name, code, term, sections]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        code:
+          type: string
+        term:
+          type: string
+        sections:
+          type: array
+          items:
+            $ref: '#/components/schemas/SectionSummary'
+    SectionSummary:
+      type: object
+      required: [id, name, enrollment]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        enrollment:
+          type: integer
+    SectionRoster:
+      type: object
+      required: [section_id, students]
+      properties:
+        section_id:
+          type: integer
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/Student'
+    SectionGradebook:
+      type: object
+      required: [section_id, grading_period, assignments, students]
+      properties:
+        section_id:
+          type: integer
+        grading_period:
+          type: string
+        assignments:
+          type: array
+          items:
+            $ref: '#/components/schemas/GradebookAssignment'
+        students:
+          type: array
+          items:
+            $ref: '#/components/schemas/GradebookStudent'
+    Student:
+      type: object
+      required: [id, first_name, last_name]
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+    GradebookAssignment:
+      type: object
+      required: [id, title, points_possible]
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        points_possible:
+          type: integer
+    GradebookStudent:
+      type: object
+      required: [student_id, name, grades]
+      properties:
+        student_id:
+          type: integer
+        name:
+          type: string
+        grades:
+          type: object
+          additionalProperties:
+            type: integer
+            description: Points earned for the assignment keyed by assignment id
+    Assignment:
+      allOf:
+        - $ref: '#/components/schemas/AssignmentInput'
+        - type: object
+          required: [id]
+          properties:
+            id:
+              type: integer
+    AssignmentInput:
+      type: object
+      required: [course_id, section_id, title, description, due_date, points_possible, category]
+      properties:
+        course_id:
+          type: integer
+        section_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        due_date:
+          type: string
+          format: date
+        points_possible:
+          type: integer
+        category:
+          type: string
+    AssignmentPatch:
+      type: object
+      properties:
+        course_id:
+          type: integer
+        section_id:
+          type: integer
+        title:
+          type: string
+        description:
+          type: string
+        due_date:
+          type: string
+          format: date
+        points_possible:
+          type: integer
+        category:
+          type: string
