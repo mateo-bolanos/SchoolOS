@@ -1,0 +1,38 @@
+===================================================== test session starts ======================================================
+platform linux -- Python 3.12.10, pytest-8.4.1, pluggy-1.6.0
+rootdir: /workspace/SchoolOS
+plugins: cov-7.0.0
+collected 4 items
+
+tests/backend/test_settings.py ....                                                                                      [100%]
+
+======================================================== tests coverage ========================================================
+_______________________________________ coverage: platform linux, python 3.12.10-final-0 _______________________________________
+
+Name                                  Stmts   Miss  Cover
+---------------------------------------------------------
+backend/api/__init__.py                   0      0   100%
+backend/api/admin.py                      1      1     0%
+backend/api/apps.py                       4      4     0%
+backend/api/migrations/__init__.py        0      0   100%
+backend/api/models.py                     1      1     0%
+backend/api/serializers.py                0      0   100%
+backend/api/tests.py                      1      1     0%
+backend/api/urls.py                       3      3     0%
+backend/api/views.py                      1      1     0%
+backend/config/__init__.py                0      0   100%
+backend/config/asgi.py                    4      4     0%
+backend/config/settings.py               32      0   100%
+backend/config/urls.py                    3      3     0%
+backend/config/wsgi.py                    4      4     0%
+backend/core/__init__.py                  0      0   100%
+backend/core/admin.py                     1      1     0%
+backend/core/apps.py                      4      4     0%
+backend/core/migrations/__init__.py       0      0   100%
+backend/core/models.py                    1      1     0%
+backend/core/tests.py                     1      1     0%
+backend/core/views.py                     1      1     0%
+backend/manage.py                        11     11     0%
+---------------------------------------------------------
+TOTAL                                    73     41    44%
+====================================================== 4 passed in 0.09s =======================================================
