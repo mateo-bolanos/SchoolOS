@@ -25,8 +25,9 @@ Each agent appends updates here at the end of a work session.
 
 ## [qa-agent]
 - Current issue: #20
-- Progress: 0%
+- Progress: 100%
 - Notes:
+  - 2025-02-15: Added pytest + vitest coverage for configuration, generated reports, and documented QA execution order.
 
 ## [docs-agent]
 - Current issue: #23
