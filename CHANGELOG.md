@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+- Google Workspace integration scaffolding with OAuth2, Classroom, and Gmail service wrappers.
 - Backend setup guide for configuring the Django + DRF service locally.
 - Frontend setup notes outlining prerequisites for the upcoming React + MUI app.
 - SchoolOS user guide describing planned roles and capabilities.
