@@ -3,24 +3,71 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
+from typing import Iterable
 
 from dotenv import load_dotenv
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 ENV_PATH = BASE_DIR / ".env"
 load_dotenv(ENV_PATH)
 
+
+def _split_env_list(raw_value: str) -> list[str]:
+    return [item.strip() for item in raw_value.split(",") if item.strip()]
+
+
 # Security
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-change-me")
 DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
-_ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "").split(",")
-ALLOWED_HOSTS = [host.strip() for host in _ALLOWED_HOSTS if host.strip()]
 
-CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
-    if origin.strip()
-]
+ALLOWED_HOSTS = _split_env_list(os.getenv("DJANGO_ALLOWED_HOSTS", ""))
+if not ALLOWED_HOSTS and DEBUG:
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+
+CSRF_TRUSTED_ORIGINS = _split_env_list(os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", ""))
+if not CSRF_TRUSTED_ORIGINS and DEBUG:
+    CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+
+CORS_ALLOWED_ORIGINS = _split_env_list(os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", ""))
+if not CORS_ALLOWED_ORIGINS and DEBUG:
+    CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOW_CREDENTIALS = True
+
+SECURE_HEADERS_ENABLED = os.getenv("DJANGO_ENABLE_SECURE_HEADERS", "0") == "1"
+SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
+SESSION_COOKIE_SAMESITE = os.getenv("DJANGO_SESSION_COOKIE_SAMESITE", "Lax")
+CSRF_COOKIE_SAMESITE = os.getenv("DJANGO_CSRF_COOKIE_SAMESITE", "Lax")
+CSRF_COOKIE_HTTPONLY = True
+X_FRAME_OPTIONS = "DENY"
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+if SECURE_HEADERS_ENABLED:
+    SECURE_SSL_REDIRECT = os.getenv("DJANGO_SECURE_SSL_REDIRECT", "1") == "1"
+    SECURE_HSTS_SECONDS = int(os.getenv("DJANGO_SECURE_HSTS_SECONDS", "31536000"))
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+else:
+    SECURE_SSL_REDIRECT = False
+    SECURE_HSTS_SECONDS = 0
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_PRELOAD = False
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+
+
+def _split_env_tuple(env_key: str, default: Iterable[str]) -> tuple[str, ...]:
+    values = _split_env_list(os.getenv(env_key, ""))
+    return tuple(values) if values else tuple(default)
+
+
+CSP_DEFAULT_SRC = _split_env_tuple("DJANGO_CSP_DEFAULT_SRC", ("'self'",))
+CSP_SCRIPT_SRC = _split_env_tuple("DJANGO_CSP_SCRIPT_SRC", ("'self'",))
+CSP_STYLE_SRC = _split_env_tuple("DJANGO_CSP_STYLE_SRC", ("'self'",))
 
 # Application definition
 INSTALLED_APPS = [
@@ -30,6 +77,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "corsheaders",
+    "csp",
     "rest_framework",
     "core",
     "api",
@@ -37,8 +86,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
+    "csp.middleware.CSPMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
