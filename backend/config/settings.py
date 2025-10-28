@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 from typing import Iterable
 
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 
@@ -18,20 +19,41 @@ def _split_env_list(raw_value: str) -> list[str]:
 
 
 # Security
+ENVIRONMENT = os.getenv("DJANGO_ENV", "development").lower()
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-change-me")
-DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
+DEBUG = os.getenv(
+    "DJANGO_DEBUG", "0" if ENVIRONMENT == "production" else "1"
+) == "1"
 
-ALLOWED_HOSTS = _split_env_list(os.getenv("DJANGO_ALLOWED_HOSTS", ""))
-if not ALLOWED_HOSTS and DEBUG:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = _split_env_list(os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", ""))
-if not CSRF_TRUSTED_ORIGINS and DEBUG:
-    CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
+def _env_list_with_fallback(
+    env_key: str, dev_default: Iterable[str], *, setting_name: str
+) -> list[str]:
+    values = _split_env_list(os.getenv(env_key, ""))
+    if values:
+        return values
+    if ENVIRONMENT in {"development", "local"}:
+        return list(dev_default)
+    raise ImproperlyConfigured(
+        f"{setting_name} must be configured via {env_key} in production environments."
+    )
 
-CORS_ALLOWED_ORIGINS = _split_env_list(os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", ""))
-if not CORS_ALLOWED_ORIGINS and DEBUG:
-    CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+
+ALLOWED_HOSTS = _env_list_with_fallback(
+    "DJANGO_ALLOWED_HOSTS", ["localhost", "127.0.0.1"], setting_name="ALLOWED_HOSTS"
+)
+
+CSRF_TRUSTED_ORIGINS = _env_list_with_fallback(
+    "DJANGO_CSRF_TRUSTED_ORIGINS",
+    ["http://localhost:3000"],
+    setting_name="CSRF_TRUSTED_ORIGINS",
+)
+
+CORS_ALLOWED_ORIGINS = _env_list_with_fallback(
+    "DJANGO_CORS_ALLOWED_ORIGINS",
+    ["http://localhost:3000"],
+    setting_name="CORS_ALLOWED_ORIGINS",
+)
 CORS_ALLOW_CREDENTIALS = True
 
 SECURE_HEADERS_ENABLED = os.getenv("DJANGO_ENABLE_SECURE_HEADERS", "0") == "1"
@@ -118,7 +140,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
 # Database configuration
-_default_engine = os.getenv("DB_ENGINE", "django.db.backends.postgresql")
+_default_engine = os.getenv(
+    "DB_ENGINE",
+    "django.db.backends.postgresql"
+    if ENVIRONMENT == "production"
+    else "django.db.backends.sqlite3",
+)
 if _default_engine == "django.db.backends.sqlite3":
     DATABASES = {
         "default": {
@@ -177,3 +204,7 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.JSONParser",
     ],
 }
+
+ENABLE_MOCK_DATA = os.getenv(
+    "DJANGO_ENABLE_MOCK_DATA", "1" if ENVIRONMENT != "production" else "0"
+) == "1"
