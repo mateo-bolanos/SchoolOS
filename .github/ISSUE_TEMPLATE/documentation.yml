@@ -1,0 +1,36 @@
+name: "📝 Documentation"
+description: "Request updates or additions to project documentation."
+title: "[Docs] <concise summary>"
+labels: ["documentation", "needs-triage"]
+body:
+  - type: textarea
+    id: scope
+    attributes:
+      label: Documentation Scope
+      description: "What document(s) need to change? Include relative paths."
+      placeholder: "Update docs/INSTALL.md with PostgreSQL setup instructions."
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: "Provide the content that needs to be added, removed, or clarified."
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Target Audience
+      description: "Who benefits from this documentation (e.g., developers, teachers, admins)?"
+  - type: textarea
+    id: references
+    attributes:
+      label: References & Assets
+      description: "Link ADRs, designs, or tickets that justify the update."
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Completion Definition
+      description: "List the conditions that determine when the documentation is considered complete."
+      placeholder: "- [ ] Screenshots updated\n- [ ] Terminology aligns with AGENTS instructions"

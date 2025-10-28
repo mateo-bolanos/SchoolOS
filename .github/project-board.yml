@@ -1,0 +1,16 @@
+name: SchoolOS Delivery Board
+description: >-
+  Centralized coordination board for all SchoolOS agents following the unified reporting workflow.
+columns:
+  - name: Todo
+    description: Backlog items prioritized for upcoming work.
+  - name: In Progress
+    description: Issues actively being developed.
+  - name: Review
+    description: Completed work awaiting review, QA, or approvals.
+  - name: Done
+    description: Work that met acceptance criteria and has been merged or released.
+workflows:
+  default_column: Todo
+  review_column: Review
+  done_column: Done

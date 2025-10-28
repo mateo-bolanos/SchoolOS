@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation Portal
+    url: https://github.com/mateo-bolanos/SchoolOS/tree/main/docs
+    about: Review existing guides before filing a new request.
+  - name: 🧠 Architecture Discussions
+    url: https://github.com/mateo-bolanos/SchoolOS/discussions
+    about: Use discussions for high-level proposals before creating implementation issues.

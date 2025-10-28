@@ -1,0 +1,57 @@
+name: "🐞 Bug Report"
+description: "Report a defect impacting SchoolOS."
+title: "[Bug] <concise summary>"
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Checklist
+        Confirm the issue affects the latest commit on `main` before filing.
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Reporter Checklist
+      options:
+        - label: "I have reproduced this on the latest `main` build."
+          required: true
+        - label: "I have searched existing issues to avoid duplicates."
+          required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: "What happened? What did you expect to happen? Include screenshots or logs."
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: "List precise steps, including test data if applicable."
+      placeholder: "1. Log in as Teacher\n2. Navigate to Grades > Class 7A\n3. Click 'Export'"
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: "Detail OS, browser, device, backend branch, commit hash, etc."
+    validations:
+      required: true
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Temporary Mitigation
+      description: "Describe any workaround discovered or recommended."
