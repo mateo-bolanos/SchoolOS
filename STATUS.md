@@ -45,3 +45,10 @@ Each agent appends updates here at the end of a work session.
 - Progress: 100%
 - Notes:
   - 2025-10-22: Completed Architecture 1-4 deliverables (instructions refresh, project board config, issue templates, reporting workflow guidance).
+
+## [ui-audit-agent]
+- Current issue: #N/A
+- Progress: 100%
+- Notes:
+  - 2025-02-20: Root cause — deployment is serving the raw Vite entry (`frontend/index.html`) so `/src/main.jsx` 404s and the SPA never mounts.
+  - Quick fixes: publish the compiled `frontend/dist` assets, add SPA fallback routing, inject a real `VITE_API_URL` pointing at the deployed API.
