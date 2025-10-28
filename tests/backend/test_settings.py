@@ -7,6 +7,9 @@ from pathlib import Path
 from types import ModuleType
 from typing import Mapping
 
+import pytest
+from django.core.exceptions import ImproperlyConfigured
+
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_DIR = REPO_ROOT / "backend"
@@ -23,10 +26,16 @@ def _reload_settings(monkeypatch, env: Mapping[str, str] | None = None):
         "DEBUG",
         "ALLOWED_HOSTS",
         "CSRF_TRUSTED_ORIGINS",
+        "CORS_ALLOWED_ORIGINS",
+        "ENABLE_MOCK_DATA",
+        "ENVIRONMENT",
         "DJANGO_SECRET_KEY",
         "DJANGO_DEBUG",
         "DJANGO_ALLOWED_HOSTS",
         "DJANGO_CSRF_TRUSTED_ORIGINS",
+        "DJANGO_CORS_ALLOWED_ORIGINS",
+        "DJANGO_ENABLE_MOCK_DATA",
+        "DJANGO_ENV",
         "DB_ENGINE",
         "SQLITE_NAME",
         "POSTGRES_DB",
@@ -71,10 +80,11 @@ def _reload_settings(monkeypatch, env: Mapping[str, str] | None = None):
 def test_default_security_configuration(monkeypatch):
     settings = _reload_settings(monkeypatch)
 
-    assert settings.DEBUG is False
+    assert settings.DEBUG is True
     assert settings.SECRET_KEY == "django-insecure-change-me"
-    assert settings.ALLOWED_HOSTS == []
-    assert settings.CSRF_TRUSTED_ORIGINS == []
+    assert settings.ALLOWED_HOSTS == ["localhost", "127.0.0.1"]
+    assert settings.CSRF_TRUSTED_ORIGINS == ["http://localhost:3000"]
+    assert settings.CORS_ALLOWED_ORIGINS == ["http://localhost:3000"]
 
 
 def test_sqlite_database_configuration(monkeypatch, tmp_path):
@@ -109,6 +119,29 @@ def test_allowed_hosts_and_csrf_parsing(monkeypatch):
         "https://schoolos.com",
         "https://app.schoolos.com",
     ]
+
+
+def test_legacy_allowed_hosts_variable(monkeypatch):
+    settings = _reload_settings(
+        monkeypatch,
+        {
+            "DJANGO_ALLOWED_HOSTS": "legacy.example.com",
+            "DJANGO_CSRF_TRUSTED_ORIGINS": "https://legacy.example.com",
+        },
+    )
+
+    assert settings.ALLOWED_HOSTS == ["legacy.example.com"]
+    assert settings.CSRF_TRUSTED_ORIGINS == ["https://legacy.example.com"]
+
+
+def test_production_requires_explicit_security_settings(monkeypatch):
+    with pytest.raises(ImproperlyConfigured):
+        _reload_settings(
+            monkeypatch,
+            {
+                "ENVIRONMENT": "production",
+            },
+        )
 
 
 def test_rest_framework_defaults(monkeypatch):

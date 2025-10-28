@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 from typing import Iterable, Sequence
 
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 
@@ -27,25 +28,51 @@ def _split_env_list(raw_value: str) -> list[str]:
     return [item.strip() for item in raw_value.split(",") if item.strip()]
 
 
+ENVIRONMENT = _getenv(["ENVIRONMENT", "DJANGO_ENV"], "development").lower()
+
+
+def _env_list_with_fallback(
+    keys: Sequence[str],
+    dev_default: Iterable[str],
+    *,
+    setting_name: str,
+) -> list[str]:
+    values = _split_env_list(_getenv(keys))
+    if values:
+        return values
+
+    if ENVIRONMENT in {"development", "local"} or DEBUG:
+        return list(dev_default)
+
+    raise ImproperlyConfigured(
+        f"{setting_name} must be configured via one of {', '.join(keys)} in production environments."
+    )
+
+
 # Security
 SECRET_KEY = _getenv(["SECRET_KEY", "DJANGO_SECRET_KEY"], "django-insecure-change-me")
-DEBUG = _getenv(["DEBUG", "DJANGO_DEBUG"], "0") == "1"
+DEBUG = _getenv(
+    ["DEBUG", "DJANGO_DEBUG"],
+    "0" if ENVIRONMENT == "production" else "1",
+) == "1"
 
-ALLOWED_HOSTS = _split_env_list(_getenv(["ALLOWED_HOSTS", "DJANGO_ALLOWED_HOSTS"]))
-if not ALLOWED_HOSTS and DEBUG:
-    ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-
-CSRF_TRUSTED_ORIGINS = _split_env_list(
-    _getenv(["CSRF_TRUSTED_ORIGINS", "DJANGO_CSRF_TRUSTED_ORIGINS"])
+ALLOWED_HOSTS = _env_list_with_fallback(
+    ["ALLOWED_HOSTS", "DJANGO_ALLOWED_HOSTS"],
+    ["localhost", "127.0.0.1"],
+    setting_name="ALLOWED_HOSTS",
 )
-if not CSRF_TRUSTED_ORIGINS and DEBUG:
-    CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
-CORS_ALLOWED_ORIGINS = _split_env_list(
-    _getenv(["CORS_ALLOWED_ORIGINS", "DJANGO_CORS_ALLOWED_ORIGINS"])
+CSRF_TRUSTED_ORIGINS = _env_list_with_fallback(
+    ["CSRF_TRUSTED_ORIGINS", "DJANGO_CSRF_TRUSTED_ORIGINS"],
+    ["http://localhost:3000"],
+    setting_name="CSRF_TRUSTED_ORIGINS",
 )
-if not CORS_ALLOWED_ORIGINS and DEBUG:
-    CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+
+CORS_ALLOWED_ORIGINS = _env_list_with_fallback(
+    ["CORS_ALLOWED_ORIGINS", "DJANGO_CORS_ALLOWED_ORIGINS"],
+    ["http://localhost:3000"],
+    setting_name="CORS_ALLOWED_ORIGINS",
+)
 CORS_ALLOW_CREDENTIALS = True
 
 SECURE_HEADERS_ENABLED = _getenv(
@@ -138,25 +165,28 @@ WSGI_APPLICATION = "config.wsgi.application"
 ASGI_APPLICATION = "config.asgi.application"
 
 # Database configuration
-_default_engine = os.getenv("DB_ENGINE", "django.db.backends.postgresql")
+_default_engine = _getenv(
+    ["DB_ENGINE"],
+    "django.db.backends.postgresql"
+    if ENVIRONMENT == "production"
+    else "django.db.backends.sqlite3",
+)
 if _default_engine == "django.db.backends.sqlite3":
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.getenv("SQLITE_NAME", str(BASE_DIR / "db.sqlite3")),
+            "NAME": _getenv(["SQLITE_NAME"], str(BASE_DIR / "db.sqlite3")),
         }
     }
 else:
     DATABASES = {
         "default": {
             "ENGINE": _default_engine,
-            "NAME": os.getenv("POSTGRES_DB", os.getenv("DB_NAME", "schoolos")),
-            "USER": os.getenv("POSTGRES_USER", os.getenv("DB_USER", "schoolos")),
-            "PASSWORD": os.getenv(
-                "POSTGRES_PASSWORD", os.getenv("DB_PASSWORD", "schoolos")
-            ),
-            "HOST": os.getenv("POSTGRES_HOST", os.getenv("DB_HOST", "localhost")),
-            "PORT": os.getenv("POSTGRES_PORT", os.getenv("DB_PORT", "5432")),
+            "NAME": _getenv(["POSTGRES_DB", "DB_NAME"], "schoolos"),
+            "USER": _getenv(["POSTGRES_USER", "DB_USER"], "schoolos"),
+            "PASSWORD": _getenv(["POSTGRES_PASSWORD", "DB_PASSWORD"], "schoolos"),
+            "HOST": _getenv(["POSTGRES_HOST", "DB_HOST"], "localhost"),
+            "PORT": _getenv(["POSTGRES_PORT", "DB_PORT"], "5432"),
         }
     }
 
@@ -197,3 +227,8 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.JSONParser",
     ],
 }
+
+ENABLE_MOCK_DATA = _getenv(
+    ["ENABLE_MOCK_DATA", "DJANGO_ENABLE_MOCK_DATA"],
+    "1" if ENVIRONMENT != "production" else "0",
+) == "1"
