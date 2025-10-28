@@ -17,6 +17,13 @@ SETTINGS_MODULE = "config.settings"
 
 def _reload_settings(monkeypatch, env):
     tracked_keys = {
+        "SECRET_KEY",
+        "DEBUG",
+        "ALLOWED_HOSTS",
+        "CSRF_TRUSTED_ORIGINS",
+        "ENABLE_SECURE_HEADERS",
+        "SECURE_SSL_REDIRECT",
+        "SECURE_HSTS_SECONDS",
         "DJANGO_SECRET_KEY",
         "DJANGO_DEBUG",
         "DJANGO_ALLOWED_HOSTS",
@@ -87,10 +94,10 @@ def test_combined_security_settings(monkeypatch):
     settings = _reload_settings(
         monkeypatch,
         {
-            "DJANGO_ALLOWED_HOSTS": "api.schoolos.test, admin.schoolos.test",
-            "DJANGO_CSRF_TRUSTED_ORIGINS": "https://api.schoolos.test,https://admin.schoolos.test",
-            "DJANGO_DEBUG": "1",
-            "DJANGO_SECRET_KEY": "integration-secret",
+            "ALLOWED_HOSTS": "api.schoolos.test, admin.schoolos.test",
+            "CSRF_TRUSTED_ORIGINS": "https://api.schoolos.test,https://admin.schoolos.test",
+            "DEBUG": "1",
+            "SECRET_KEY": "integration-secret",
         },
     )
 

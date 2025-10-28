@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import os
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Sequence
 
 from dotenv import load_dotenv
 
@@ -13,28 +13,44 @@ ENV_PATH = BASE_DIR / ".env"
 load_dotenv(ENV_PATH)
 
 
+def _getenv(keys: Sequence[str], default: str = "") -> str:
+    """Return the first environment variable value found for the provided keys."""
+
+    for key in keys:
+        value = os.getenv(key)
+        if value is not None:
+            return value
+    return default
+
+
 def _split_env_list(raw_value: str) -> list[str]:
     return [item.strip() for item in raw_value.split(",") if item.strip()]
 
 
 # Security
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "django-insecure-change-me")
-DEBUG = os.getenv("DJANGO_DEBUG", "0") == "1"
+SECRET_KEY = _getenv(["SECRET_KEY", "DJANGO_SECRET_KEY"], "django-insecure-change-me")
+DEBUG = _getenv(["DEBUG", "DJANGO_DEBUG"], "0") == "1"
 
-ALLOWED_HOSTS = _split_env_list(os.getenv("DJANGO_ALLOWED_HOSTS", ""))
+ALLOWED_HOSTS = _split_env_list(_getenv(["ALLOWED_HOSTS", "DJANGO_ALLOWED_HOSTS"]))
 if not ALLOWED_HOSTS and DEBUG:
     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
 
-CSRF_TRUSTED_ORIGINS = _split_env_list(os.getenv("DJANGO_CSRF_TRUSTED_ORIGINS", ""))
+CSRF_TRUSTED_ORIGINS = _split_env_list(
+    _getenv(["CSRF_TRUSTED_ORIGINS", "DJANGO_CSRF_TRUSTED_ORIGINS"])
+)
 if not CSRF_TRUSTED_ORIGINS and DEBUG:
     CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
-CORS_ALLOWED_ORIGINS = _split_env_list(os.getenv("DJANGO_CORS_ALLOWED_ORIGINS", ""))
+CORS_ALLOWED_ORIGINS = _split_env_list(
+    _getenv(["CORS_ALLOWED_ORIGINS", "DJANGO_CORS_ALLOWED_ORIGINS"])
+)
 if not CORS_ALLOWED_ORIGINS and DEBUG:
     CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
 CORS_ALLOW_CREDENTIALS = True
 
-SECURE_HEADERS_ENABLED = os.getenv("DJANGO_ENABLE_SECURE_HEADERS", "0") == "1"
+SECURE_HEADERS_ENABLED = _getenv(
+    ["ENABLE_SECURE_HEADERS", "DJANGO_ENABLE_SECURE_HEADERS"], "0"
+) == "1"
 SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
@@ -45,8 +61,12 @@ X_FRAME_OPTIONS = "DENY"
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 if SECURE_HEADERS_ENABLED:
-    SECURE_SSL_REDIRECT = os.getenv("DJANGO_SECURE_SSL_REDIRECT", "1") == "1"
-    SECURE_HSTS_SECONDS = int(os.getenv("DJANGO_SECURE_HSTS_SECONDS", "31536000"))
+    SECURE_SSL_REDIRECT = _getenv(
+        ["SECURE_SSL_REDIRECT", "DJANGO_SECURE_SSL_REDIRECT"], "1"
+    ) == "1"
+    SECURE_HSTS_SECONDS = int(
+        _getenv(["SECURE_HSTS_SECONDS", "DJANGO_SECURE_HSTS_SECONDS"], "31536000")
+    )
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SESSION_COOKIE_SECURE = True
@@ -60,14 +80,14 @@ else:
     CSRF_COOKIE_SECURE = False
 
 
-def _split_env_tuple(env_key: str, default: Iterable[str]) -> tuple[str, ...]:
-    values = _split_env_list(os.getenv(env_key, ""))
+def _split_env_tuple(env_keys: Sequence[str], default: Iterable[str]) -> tuple[str, ...]:
+    values = _split_env_list(_getenv(env_keys))
     return tuple(values) if values else tuple(default)
 
 
-CSP_DEFAULT_SRC = _split_env_tuple("DJANGO_CSP_DEFAULT_SRC", ("'self'",))
-CSP_SCRIPT_SRC = _split_env_tuple("DJANGO_CSP_SCRIPT_SRC", ("'self'",))
-CSP_STYLE_SRC = _split_env_tuple("DJANGO_CSP_STYLE_SRC", ("'self'",))
+CSP_DEFAULT_SRC = _split_env_tuple(("CSP_DEFAULT_SRC", "DJANGO_CSP_DEFAULT_SRC"), ("'self'",))
+CSP_SCRIPT_SRC = _split_env_tuple(("CSP_SCRIPT_SRC", "DJANGO_CSP_SCRIPT_SRC"), ("'self'",))
+CSP_STYLE_SRC = _split_env_tuple(("CSP_STYLE_SRC", "DJANGO_CSP_STYLE_SRC"), ("'self'",))
 
 # Application definition
 INSTALLED_APPS = [
