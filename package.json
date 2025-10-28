@@ -4,6 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "install:frontend": "npm install --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "vercel-build": "npm run build --prefix frontend",
+    "postinstall": "npm run install:frontend",
     "test:frontend": "vitest run --config vitest.config.mjs"
   },
   "devDependencies": {
