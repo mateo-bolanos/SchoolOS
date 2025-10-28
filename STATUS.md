@@ -29,9 +29,10 @@ Each agent appends updates here at the end of a work session.
 - Notes:
 
 ## [docs-agent]
-- Current issue: #23
-- Progress: 0%
+- Current issue: #34
+- Progress: 100%
 - Notes:
+  - Authored backend/frontend setup guides, user manual, deployment checklist, and updated changelog across issues #11, #20, #21, #30, and #34.
 
 ## [architect-agent]
 - Current issue: #28
