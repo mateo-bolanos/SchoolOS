@@ -21,8 +21,10 @@ Each agent appends updates here at the end of a work session.
 
 ## [integrations-agent]
 - Current issue: #13
-- Progress: 0%
+- Progress: 100%
 - Notes:
+  - Implemented OAuth2, Classroom, and Gmail service wrappers with mock-tested flows.
+  - Documented configuration requirements and expanded .env example with Google keys.
 
 ## [qa-agent]
 - Current issue: #20
