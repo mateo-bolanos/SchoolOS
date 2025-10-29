@@ -12,8 +12,8 @@ const ErrorPage = () => {
       <Typography variant="body1" color="text.secondary" paragraph>
         {error?.statusText || error?.message || 'An unexpected error occurred.'}
       </Typography>
-      <Button component={RouterLink} to="/" variant="contained" color="primary">
-        Return to home
+      <Button component={RouterLink} to="/dashboard" variant="contained" color="primary">
+        Go to dashboard
       </Button>
     </Box>
   );

@@ -1,12 +1,11 @@
-import { Outlet } from 'react-router-dom';
-import AppLayout from './components/layout/AppLayout';
+import { RouterProvider } from 'react-router-dom';
+import AppProviders from './providers/AppProviders';
+import router from './routes/router';
 
-const App = () => {
-  return (
-    <AppLayout>
-      <Outlet />
-    </AppLayout>
-  );
-};
+const App = () => (
+  <AppProviders>
+    <RouterProvider router={router} />
+  </AppProviders>
+);
 
 export default App;
