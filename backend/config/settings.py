@@ -104,6 +104,58 @@ CSP_DEFAULT_SRC = _split_env_tuple(("CSP_DEFAULT_SRC", "DJANGO_CSP_DEFAULT_SRC")
 CSP_SCRIPT_SRC  = _split_env_tuple(("CSP_SCRIPT_SRC",  "DJANGO_CSP_SCRIPT_SRC"),  ("'self'",))
 CSP_STYLE_SRC   = _split_env_tuple(("CSP_STYLE_SRC",   "DJANGO_CSP_STYLE_SRC"),   ("'self'",))
 
+CSP_DEFAULT_SRC = _split_env_tuple(("CSP_DEFAULT_SRC", "DJANGO_CSP_DEFAULT_SRC"), ("'self'",))
+CSP_SCRIPT_SRC = _split_env_tuple(("CSP_SCRIPT_SRC", "DJANGO_CSP_SCRIPT_SRC"), ("'self'",))
+CSP_STYLE_SRC = _split_env_tuple(("CSP_STYLE_SRC", "DJANGO_CSP_STYLE_SRC"), ("'self'",))
+
+# Application definition
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "corsheaders",
+    "csp",
+    "rest_framework",
+    "core",
+    "api",
+]
+
+MIDDLEWARE = [
+    "django.middleware.security.SecurityMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.common.CommonMiddleware",
+    "csp.middleware.CSPMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+    "django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
+
+ROOT_URLCONF = "config.urls"
+
+TEMPLATES = [
+    {
+        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [BASE_DIR / "templates"],
+        "APP_DIRS": True,
+        "OPTIONS": {
+            "context_processors": [
+                "django.template.context_processors.debug",
+                "django.template.context_processors.request",
+                "django.contrib.auth.context_processors.auth",
+                "django.contrib.messages.context_processors.messages",
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = "config.wsgi.application"
+ASGI_APPLICATION = "config.asgi.application"
+
 # Database
 _default_engine = _getenv(
     ["DB_ENGINE"],
@@ -127,6 +179,45 @@ else:
             "PORT": _getenv(["POSTGRES_PORT", "DB_PORT"], "5432"),
         }
     }
+
+# Password validation
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+    },
+    {
+        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+    },
+]
+
+# Internationalization
+LANGUAGE_CODE = "en-us"
+TIME_ZONE = os.getenv("DJANGO_TIME_ZONE", "UTC")
+USE_I18N = True
+USE_TZ = True
+
+# Static files
+STATIC_URL = "static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# DRF configuration
+REST_FRAMEWORK = {
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+    ],
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser",
+    ],
+}
 
 # Mock data toggle (define only once)
 ENABLE_MOCK_DATA = _getenv(
