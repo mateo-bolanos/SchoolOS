@@ -1,0 +1,4 @@
+Attempted to run Lighthouse via Puppeteer-managed Chromium using:
+CHROME_PATH=/root/.cache/puppeteer/chrome/linux-142.0.7444.59/chrome-linux64/chrome npx lighthouse http://localhost:4173 --preset=desktop --output json --output html --chrome-flags="--headless --no-sandbox --disable-dev-shm-usage" --quiet --output-path=../reports/frontend/lighthouse-report
+
+Result: command did not complete because the downloaded Chromium binary requires additional shared libraries (e.g. libatk-1.0.so.0) that are unavailable in the container. The binary exits with status 127, preventing Lighthouse from generating a report in this environment.

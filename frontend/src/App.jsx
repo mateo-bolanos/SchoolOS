@@ -1,11 +1,11 @@
 import { Outlet } from 'react-router-dom';
-import AppLayout from './components/layout/AppLayout';
+import AppShell from './components/layout/AppShell';
 
 const App = () => {
   return (
-    <AppLayout>
+    <AppShell>
       <Outlet />
-    </AppLayout>
+    </AppShell>
   );
 };
 

@@ -1,0 +1,1 @@
+Axe CLI execution was skipped because Lighthouse could not launch Chromium in this container. Axe uses the same browser dependencies and would fail for the same reason (missing libatk-1.0.so.0 and related libraries). See lighthouse-error.txt for details.
