@@ -31,11 +31,6 @@ def _split_env_list(raw_value: str) -> list[str]:
 # --- Env helpers ---
 ENVIRONMENT = _getenv(["ENVIRONMENT", "DJANGO_ENV"], "development").lower()
 
-# Security
-SECRET_KEY = _getenv(["SECRET_KEY", "DJANGO_SECRET_KEY"], "django-insecure-change-me")
-DEBUG = _getenv(["DEBUG", "DJANGO_DEBUG"], "0" if ENVIRONMENT == "production" else "1") == "1"
-
-
 def _env_list_with_fallback(
     keys: Sequence[str],
     dev_default: Iterable[str],
@@ -53,6 +48,9 @@ def _env_list_with_fallback(
         f"{setting_name} must be configured via one of {', '.join(keys)} in production environments."
     )
 
+# Security
+SECRET_KEY = _getenv(["SECRET_KEY", "DJANGO_SECRET_KEY"], "django-insecure-change-me")
+DEBUG = _getenv(["DEBUG", "DJANGO_DEBUG"], "0" if ENVIRONMENT == "production" else "1") == "1"
 
 ALLOWED_HOSTS = _env_list_with_fallback(
     ["ALLOWED_HOSTS", "DJANGO_ALLOWED_HOSTS"],
@@ -84,12 +82,8 @@ X_FRAME_OPTIONS = "DENY"
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 if SECURE_HEADERS_ENABLED:
-    SECURE_SSL_REDIRECT = _getenv(
-        ["SECURE_SSL_REDIRECT", "DJANGO_SECURE_SSL_REDIRECT"], "1"
-    ) == "1"
-    SECURE_HSTS_SECONDS = int(
-        _getenv(["SECURE_HSTS_SECONDS", "DJANGO_SECURE_HSTS_SECONDS"], "31536000")
-    )
+    SECURE_SSL_REDIRECT = _getenv(["SECURE_SSL_REDIRECT", "DJANGO_SECURE_SSL_REDIRECT"], "1") == "1"
+    SECURE_HSTS_SECONDS = int(_getenv(["SECURE_HSTS_SECONDS", "DJANGO_SECURE_HSTS_SECONDS"], "31536000"))
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
     SESSION_COOKIE_SECURE = True
@@ -102,11 +96,13 @@ else:
     SESSION_COOKIE_SECURE = False
     CSRF_COOKIE_SECURE = False
 
-
 def _split_env_tuple(env_keys: Sequence[str], default: Iterable[str]) -> tuple[str, ...]:
     values = _split_env_list(_getenv(env_keys))
     return tuple(values) if values else tuple(default)
 
+CSP_DEFAULT_SRC = _split_env_tuple(("CSP_DEFAULT_SRC", "DJANGO_CSP_DEFAULT_SRC"), ("'self'",))
+CSP_SCRIPT_SRC  = _split_env_tuple(("CSP_SCRIPT_SRC",  "DJANGO_CSP_SCRIPT_SRC"),  ("'self'",))
+CSP_STYLE_SRC   = _split_env_tuple(("CSP_STYLE_SRC",   "DJANGO_CSP_STYLE_SRC"),   ("'self'",))
 
 CSP_DEFAULT_SRC = _split_env_tuple(("CSP_DEFAULT_SRC", "DJANGO_CSP_DEFAULT_SRC"), ("'self'",))
 CSP_SCRIPT_SRC = _split_env_tuple(("CSP_SCRIPT_SRC", "DJANGO_CSP_SCRIPT_SRC"), ("'self'",))
