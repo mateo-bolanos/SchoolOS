@@ -31,6 +31,10 @@ def _split_env_list(raw_value: str) -> list[str]:
 # --- Env helpers ---
 ENVIRONMENT = _getenv(["ENVIRONMENT", "DJANGO_ENV"], "development").lower()
 
+# Security
+SECRET_KEY = _getenv(["SECRET_KEY", "DJANGO_SECRET_KEY"], "django-insecure-change-me")
+DEBUG = _getenv(["DEBUG", "DJANGO_DEBUG"], "0" if ENVIRONMENT == "production" else "1") == "1"
+
 
 def _env_list_with_fallback(
     keys: Sequence[str],
@@ -49,10 +53,6 @@ def _env_list_with_fallback(
         f"{setting_name} must be configured via one of {', '.join(keys)} in production environments."
     )
 
-
-# Security
-SECRET_KEY = _getenv(["SECRET_KEY", "DJANGO_SECRET_KEY"], "django-insecure-change-me")
-DEBUG = _getenv(["DEBUG", "DJANGO_DEBUG"], "0" if ENVIRONMENT == "production" else "1") == "1"
 
 ALLOWED_HOSTS = _env_list_with_fallback(
     ["ALLOWED_HOSTS", "DJANGO_ALLOWED_HOSTS"],
@@ -213,6 +213,7 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# DRF configuration
 REST_FRAMEWORK = {
     "DEFAULT_RENDERER_CLASSES": [
         "rest_framework.renderers.JSONRenderer",
@@ -222,6 +223,7 @@ REST_FRAMEWORK = {
     ],
 }
 
+# Mock data toggle (define only once)
 ENABLE_MOCK_DATA = _getenv(
     ["ENABLE_MOCK_DATA", "DJANGO_ENABLE_MOCK_DATA"],
     "1" if ENVIRONMENT != "production" else "0",
