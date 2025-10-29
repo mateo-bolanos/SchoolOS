@@ -163,7 +163,11 @@ const Dashboard = () => {
                       alignItems: 'flex-start',
                       justifyContent: 'space-between',
                       gap: 2,
-                      flexWrap: 'wrap'
+                      flexWrap: 'wrap',
+                      bgcolor: 'background.paper',
+                      borderColor: 'divider',
+                      borderStyle: 'solid',
+                      borderWidth: 1
                     }}
                   >
                     <Box>
