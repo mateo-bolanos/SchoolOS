@@ -1,0 +1,53 @@
+[
+  {
+    "path": "/dashboard",
+    "timings": [
+      {
+        "metric": "largest-contentful-paint",
+        "budget": 2500
+      },
+      {
+        "metric": "total-blocking-time",
+        "budget": 200
+      },
+      {
+        "metric": "cumulative-layout-shift",
+        "budget": 0.1
+      }
+    ]
+  },
+  {
+    "path": "/dashboard/gradebook",
+    "timings": [
+      {
+        "metric": "largest-contentful-paint",
+        "budget": 2500
+      },
+      {
+        "metric": "total-blocking-time",
+        "budget": 200
+      },
+      {
+        "metric": "cumulative-layout-shift",
+        "budget": 0.1
+      }
+    ]
+  },
+  {
+    "path": "/dashboard/assignments",
+    "timings": [
+      {
+        "metric": "largest-contentful-paint",
+        "budget": 2500
+      },
+      {
+        "metric": "total-blocking-time",
+        "budget": 200
+      },
+      {
+        "metric": "cumulative-layout-shift",
+        "budget": 0.1
+      }
+    ]
+  }
+]

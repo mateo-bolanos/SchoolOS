@@ -1,0 +1,46 @@
+{
+  "ci": {
+    "collect": {
+      "numberOfRuns": 1,
+      "startServerCommand": "npm run preview --prefix frontend -- --host 0.0.0.0 --port 4173",
+      "url": [
+        "http://127.0.0.1:4173/dashboard",
+        "http://127.0.0.1:4173/dashboard/gradebook",
+        "http://127.0.0.1:4173/dashboard/assignments"
+      ],
+      "settings": {
+        "preset": "desktop"
+      },
+      "budgetsFile": "lighthouse-budgets.json"
+    },
+    "assert": {
+      "assertions": {
+        "largest-contentful-paint": [
+          "error",
+          {
+            "maxNumericValue": 2500,
+            "aggregationMethod": "median"
+          }
+        ],
+        "total-blocking-time": [
+          "error",
+          {
+            "maxNumericValue": 200,
+            "aggregationMethod": "median"
+          }
+        ],
+        "cumulative-layout-shift": [
+          "error",
+          {
+            "maxNumericValue": 0.1,
+            "aggregationMethod": "median"
+          }
+        ]
+      }
+    },
+    "upload": {
+      "target": "filesystem",
+      "outputDir": "reports/lighthouse"
+    }
+  }
+}
