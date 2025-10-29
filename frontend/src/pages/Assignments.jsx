@@ -120,7 +120,9 @@ const Assignments = () => {
               }}
             >
               <Box>
-                <Typography variant="h6">{assignment.title}</Typography>
+                <Typography variant="h6" component="p">
+                  {assignment.title}
+                </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {courseTitles[assignment.courseId] ?? assignment.courseId} • Due{' '}
                   {new Date(assignment.dueDate).toLocaleString(undefined, {

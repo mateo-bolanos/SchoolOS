@@ -8,12 +8,18 @@
     "build": "npm run build --prefix frontend",
     "vercel-build": "npm run build --prefix frontend",
     "postinstall": "npm run install:frontend",
-    "test:frontend": "vitest run --config vitest.config.mjs"
+    "test:frontend": "vitest run --config vitest.config.mjs",
+    "test:e2e": "playwright test",
+    "test:perf": "node scripts/perf-check.mjs"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "^1.45.3",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.1.2",
+    "chrome-launcher": "^0.15.2",
     "@vitejs/plugin-react": "^4.2.1",
+    "lighthouse": "^12.1.0",
     "jsdom": "^24.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

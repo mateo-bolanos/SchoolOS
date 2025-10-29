@@ -120,31 +120,46 @@ const Gradebook = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.scores.map((score) => (
-              <TableRow
-                key={score.student}
-                hover={!prefersReducedMotion}
-                sx={{ transition: prefersReducedMotion ? 'none' : 'background-color 180ms ease' }}
-              >
-                <TableCell>{score.student}</TableCell>
-                <TableCell>
-                  {new Date(score.latestSubmission).toLocaleString(undefined, {
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: '2-digit'
-                  })}
-                </TableCell>
-                <TableCell align="right">{score.average}%</TableCell>
-                <TableCell align="right">
-                  <Chip
-                    label={score.atRisk ? 'At risk' : 'On track'}
-                    color={score.atRisk ? 'error' : 'success'}
-                    size="small"
-                  />
-                </TableCell>
-              </TableRow>
-            ))}
+            {data.scores.map((score) => {
+              const isAtRisk = score.atRisk;
+              const chipBackground = isAtRisk ? theme.palette.error.dark : theme.palette.success.dark;
+              const chipTextColor = theme.palette.getContrastText(chipBackground);
+
+              return (
+                <TableRow
+                  key={score.student}
+                  hover={!prefersReducedMotion}
+                  sx={{ transition: prefersReducedMotion ? 'none' : 'background-color 180ms ease' }}
+                >
+                  <TableCell>{score.student}</TableCell>
+                  <TableCell>
+                    {new Date(score.latestSubmission).toLocaleString(undefined, {
+                      month: 'short',
+                      day: 'numeric',
+                      hour: 'numeric',
+                      minute: '2-digit'
+                    })}
+                  </TableCell>
+                  <TableCell align="right">{score.average}%</TableCell>
+                  <TableCell align="right">
+                    <Chip
+                      label={isAtRisk ? 'At risk' : 'On track'}
+                      size="small"
+                      sx={{
+                        bgcolor: chipBackground,
+                        color: chipTextColor,
+                        fontWeight: 600,
+                        '& .MuiChip-label': {
+                          color: 'inherit',
+                          fontWeight: 600,
+                          px: 1
+                        }
+                      }}
+                    />
+                  </TableCell>
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </Paper>
