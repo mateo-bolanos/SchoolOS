@@ -8,6 +8,7 @@ import {
   Drawer,
   IconButton,
   List,
+  ListItem,
   ListItemButton,
   ListItemIcon,
   ListItemText,
@@ -83,41 +84,42 @@ const AppShell = ({ children }) => {
       </Box>
       <Divider />
       <Box flexGrow={1} px={2} py={2}>
-        <List sx={{ display: 'grid', gap: 0.5 }}>
+        <List aria-label="Primary navigation" sx={{ display: 'grid', gap: 0.5, px: 0 }}>
           {NAV_ITEMS.map(({ label, icon: Icon, path, match }) => {
             const isActive = match?.some((segment) => location.pathname.startsWith(segment));
 
             return (
-              <ListItemButton
-                key={path}
-                component={RouterLink}
-                to={path}
-                selected={isActive}
-                onClick={() => {
-                  if (!isDesktop) {
-                    toggleMobileNav();
-                  }
-                }}
-                sx={{
-                  borderRadius: 2,
-                  transition: navItemTransition,
-                  '&.Mui-selected': {
-                    bgcolor: 'primary.main',
-                    color: 'primary.contrastText',
-                    '& .MuiListItemIcon-root': {
-                      color: 'inherit'
+              <ListItem key={path} disablePadding component="li">
+                <ListItemButton
+                  component={RouterLink}
+                  to={path}
+                  selected={isActive}
+                  onClick={() => {
+                    if (!isDesktop) {
+                      toggleMobileNav();
                     }
-                  },
-                  '&:hover': {
-                    transform: prefersReducedMotion ? 'none' : 'translateX(4px)'
-                  }
-                }}
-              >
-                <ListItemIcon sx={{ minWidth: 36, color: 'inherit' }}>
-                  <Icon />
-                </ListItemIcon>
-                <ListItemText primary={label} />
-              </ListItemButton>
+                  }}
+                  sx={{
+                    borderRadius: 2,
+                    transition: navItemTransition,
+                    '&.Mui-selected': {
+                      bgcolor: 'primary.main',
+                      color: 'primary.contrastText',
+                      '& .MuiListItemIcon-root': {
+                        color: 'inherit'
+                      }
+                    },
+                    '&:hover': {
+                      transform: prefersReducedMotion ? 'none' : 'translateX(4px)'
+                    }
+                  }}
+                >
+                  <ListItemIcon sx={{ minWidth: 36, color: 'inherit' }}>
+                    <Icon />
+                  </ListItemIcon>
+                  <ListItemText primary={label} />
+                </ListItemButton>
+              </ListItem>
             );
           })}
         </List>

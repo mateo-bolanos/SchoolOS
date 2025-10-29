@@ -41,6 +41,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pytestdebug.log
+playwright-report/
+reports/playwright/
+reports/lighthouse/
+test-results/
 
 # Editors and OS files
 .vscode/

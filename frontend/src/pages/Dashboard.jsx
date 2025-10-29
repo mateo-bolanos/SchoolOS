@@ -20,7 +20,6 @@ import {
   HorizontalRuleRounded,
   RefreshRounded
 } from '@mui/icons-material';
-import { Fragment } from 'react';
 import { useTheme } from '@mui/material/styles';
 import EmptyState from '../components/states/EmptyState';
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion';
@@ -67,7 +66,7 @@ const Dashboard = () => {
           <Typography variant="subtitle1" component="p" color="text.secondary">
             {metric.label}
           </Typography>
-          <Typography variant="h3" color="text.primary">
+          <Typography variant="h3" component="p" color="text.primary">
             {value}
           </Typography>
           {metric.delta ? (
@@ -164,7 +163,11 @@ const Dashboard = () => {
                       alignItems: 'flex-start',
                       justifyContent: 'space-between',
                       gap: 2,
-                      flexWrap: 'wrap'
+                      flexWrap: 'wrap',
+                      bgcolor: 'background.paper',
+                      borderColor: 'divider',
+                      borderStyle: 'solid',
+                      borderWidth: 1
                     }}
                   >
                     <Box>
@@ -267,23 +270,28 @@ const Dashboard = () => {
               ) : messages.length ? (
                 <List disablePadding>
                   {messages.map((message, index) => (
-                    <Fragment key={message.id}>
-                      <ListItem alignItems="flex-start" disableGutters>
-                        <ListItemText
-                          primary={message.subject}
-                          secondary={`${message.from} • ${new Date(message.receivedAt).toLocaleString(undefined, {
-                            month: 'short',
-                            day: 'numeric',
-                            hour: 'numeric',
-                            minute: '2-digit'
-                          })}`}
-                        />
-                      </ListItem>
-                      <Typography variant="body2" color="text.secondary" px={2} pb={2}>
+                    <ListItem
+                      key={message.id}
+                      alignItems="flex-start"
+                      disableGutters
+                      divider={index < messages.length - 1}
+                      sx={{ flexDirection: 'column', alignItems: 'stretch', px: 0, py: 1.5 }}
+                    >
+                      <ListItemText
+                        sx={{ px: 2 }}
+                        primaryTypographyProps={{ variant: 'subtitle1', fontWeight: 600 }}
+                        primary={message.subject}
+                        secondary={`${message.from} • ${new Date(message.receivedAt).toLocaleString(undefined, {
+                          month: 'short',
+                          day: 'numeric',
+                          hour: 'numeric',
+                          minute: '2-digit'
+                        })}`}
+                      />
+                      <Typography variant="body2" color="text.secondary" sx={{ px: 2, pt: 1.5 }}>
                         {message.preview}
                       </Typography>
-                      {index < messages.length - 1 ? <Divider sx={{ my: 1 }} /> : null}
-                    </Fragment>
+                    </ListItem>
                   ))}
                 </List>
               ) : (

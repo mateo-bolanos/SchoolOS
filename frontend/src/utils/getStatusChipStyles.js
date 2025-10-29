@@ -15,16 +15,27 @@ const statusPaletteFactory = (theme) => ({
     border: theme.palette.info.main,
     text: theme.palette.info.dark,
     background: alpha(theme.palette.info.light, 0.25)
+  },
+  draft: {
+    border: theme.palette.info.main,
+    text: theme.palette.info.dark,
+    background: alpha(theme.palette.info.light, 0.22)
+  },
+  overdue: {
+    border: theme.palette.error.main,
+    text: theme.palette.error.dark,
+    background: alpha(theme.palette.error.light, 0.25)
   }
 });
 
 const getStatusChipStyles = (status, theme) => {
   const palette = statusPaletteFactory(theme);
-  const styles = palette[status] ?? {
-    border: theme.palette.divider,
-    text: theme.palette.text.secondary,
-    background: 'transparent'
-  };
+  const styles =
+    palette[status] ?? {
+      border: alpha(theme.palette.text.primary, 0.24),
+      text: theme.palette.text.primary,
+      background: alpha(theme.palette.text.primary, 0.08)
+    };
 
   return {
     textTransform: 'capitalize',
