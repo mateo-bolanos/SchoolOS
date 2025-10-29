@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { AppBar, Box, Container, Toolbar, Typography } from '@mui/material';
-import { Outlet } from 'react-router-dom';
+import { AppBar, Box, Button, Container, Stack, Toolbar, Typography } from '@mui/material';
+import { Link as RouterLink, Outlet } from 'react-router-dom';
 
 const AppLayout = ({ title = 'SchoolOS', children = null }) => {
   return (
@@ -10,9 +10,26 @@ const AppLayout = ({ title = 'SchoolOS', children = null }) => {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             {title}
           </Typography>
+          <Stack component="nav" direction="row" spacing={1} aria-label="Primary">
+            <Button component={RouterLink} to="/" color="inherit">
+              Dashboard
+            </Button>
+            <Button component={RouterLink} to="/dashboard/gradebook" color="inherit">
+              Gradebook
+            </Button>
+            <Button component={RouterLink} to="/dashboard/assignments" color="inherit">
+              Assignments
+            </Button>
+          </Stack>
         </Toolbar>
       </AppBar>
-      <Container maxWidth="lg" sx={{ py: 4 }}>
+      <Container
+        component="main"
+        id="main-content"
+        maxWidth="lg"
+        role="main"
+        sx={{ py: 4 }}
+      >
         {children ?? <Outlet />}
       </Container>
     </Box>
